@@ -8,6 +8,32 @@
 Прямоугольный треугольник,
 Равносторонний треугольник,
 Ромб */
+            for (var i = 0; i<5; i++) { // rectangle
+                for (var j = 0; j<7; j++) {
+                    document.write("*")
+                }
+                document.write("<br />")
+            }
+            document.write("<br />")
+            for (var i = 0; i<5; i++) { // right triangle
+                let j = i
+                while (j>-1) {
+                    document.write("*")
+                    j--
+                }
+                document.write("<br />")
+            }
+            document.write("<br />")
+            for (var i = 0; i<5; i++) { // equal triangle
+                for (var j=0; j<4-i; j++) {
+                    document.write("_")
+                }
+                for (var j=0; j<1+i*2; j++ ) {
+                    document.write("*")
+                }
+                document.write("<br />")
+            }
+            document.write("<br />")
         </script>
     </head>
     <body></body> 

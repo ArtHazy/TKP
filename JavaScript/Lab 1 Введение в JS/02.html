@@ -10,6 +10,21 @@
         выполнить следующие выражения:
         res = x += y - x++ * z; res = z = --x - y * 5; res = y /= x + 5 % z ; res = z = x++ + y * 5 ; res = x = y - x++ * z ;
         и результаты вывести в окне браузера */
+        var x=6
+        var y=15
+        var z=4
+        let res
+        res = x += y - x++ * z // -3
+        document.writeln(res)
+        res = z = --x - y * 5 // -79
+        document.writeln(res)
+        res = y /= x + 5 % z // 15
+        document.writeln(res)
+        res = z = x++ + y * 5 // 71
+        document.writeln(res)
+        res = x = y - x++ * z // 228
+        document.writeln(res)
+        
         </script>
     </head> 
     <body></body> 
