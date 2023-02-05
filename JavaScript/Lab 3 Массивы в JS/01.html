@@ -14,6 +14,18 @@
 ....
 Элемент по индексу 12 со значением 43 не четный
 */
+    var arr = Array(3, 5, -3, 6, 143, 7, 12, -87, 54, 32, -78, 5, 43)
+    var min = 1000
+    var max = -1000
+    var sum = 0
+
+    for (var i = 0; i<arr.length; i++) {
+        sum+=arr[i]
+        arr[i]<min ? min = arr[i] : arr[i]>max? max=arr[i] : null
+        arr[i]%2 == 1? document.write("Элемент по индексу " + i + " со значением " + arr[i] + " не четный <br />") : null
+    }
+    document.write("Наибольшее значение массива = " + max + "<br />" + "Наименьшее значение массива = " + min + "<br />")
+    document.write("Сумма всех элементов массива = " + sum + "<br />" + "Среднее арифметическое массива = " + sum/arr.length + "<br />")
         </script>
     </head>
     <body></body> 

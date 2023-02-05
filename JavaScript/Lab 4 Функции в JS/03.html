@@ -7,6 +7,76 @@
             извлечение элемента из стека
             добавление элемента в очередь
             извлечение элемента из очереди */
+            
+            document.writeln("Stack <br />")
+
+            class Stack {
+                constructor (length = 5) {
+                    this.arr = Array(length)
+                    this.length = length
+                    this.pointer = 0
+                }
+                push(value){
+                    if (this.pointer<this.length)
+                    {
+                        this.arr[this.pointer] = value
+                        this.pointer++
+                    } 
+                }
+                pop(){
+                    if (this.pointer>=0) {
+                        document.writeln(this.arr[this.pointer-1])
+                        this.arr[this.pointer-1] = undefined
+                        this.pointer--
+                    }
+                }
+            }
+            
+            test = new Stack()
+            
+            test.push(1)
+            test.push(2)
+            test.pop()
+            test.pop()
+
+            document.writeln("<br /> Queue <br />")
+
+            class Queue {
+                constructor(length = 5) {
+                    this.arr = Array(length)
+                    this.length = length
+                    this.spacePtr = 0
+                    this.firstPtr = -1
+                }
+                push(value) {
+                    if (this.spacePtr!=this.firstPtr) {
+                        this.arr[this.spacePtr] = value
+                        this.spacePtr = ++this.spacePtr%this.length
+                    }
+                    this.firstPtr==-1? this.firstPtr = 0 : null
+                }
+                pop() {
+                    if (this.firstPtr!=this.spacePtr) {
+                        document.writeln(this.arr[this.firstPtr])
+                        this.arr[this.firstPtr] = undefined
+                        this.firstPtr = ++this.firstPtr%this.length
+                    }
+                }
+            }
+            var test = new Queue
+            test.push(1)
+            test.push(2)
+            test.push(3)
+            test.pop()
+            test.pop()
+            test.push(4)
+            test.push(5)
+            test.pop()
+            test.pop()
+            test.pop()
+            test.pop()
+            test.pop()
+
         </script>
     </head>
     <body> </body>

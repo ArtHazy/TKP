@@ -10,6 +10,19 @@
 вывод в окно браузера сообщения: "Число делится на 2 или 5 или 3 или 6 или 9 без остатка";
 3. Проверка является ли параметр функции простым числом и вывод в кне браузера соответствующей
 информации. */
+            function func(a) {
+                a==0? document.writeln("0") : a>0? document.writeln("+") : document.writeln("-")
+                document.write("<br />")
+                if (a%2==0 || a%3==0 || a%5==0 || a%9==0) {document.writeln("Number can be divided by 2 or 5 or 3 or 9")}
+                for (var i = 2; i<= a/2; i++) {
+                    if (a%i==0) {
+                        return(null)
+                    }
+                }
+                document.writeln("simple")
+            }
+            var a = 11
+            func(a)
         </script>
     </head> 
     <body></body> 

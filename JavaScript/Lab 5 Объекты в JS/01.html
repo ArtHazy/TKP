@@ -5,6 +5,35 @@
         <script type="text/javascript"> 
         /*
 Создать программную модель стека, используя объектно-ориентированный подход */
+            class Stack {
+                constructor (length = 5) {
+                    this.arr = Array(length)
+                    this.length = length
+                    this.pointer = 0
+                }
+                push(value){
+                    if (this.pointer<this.length)
+                    {
+                        this.arr[this.pointer] = value
+                        this.pointer++
+                    } 
+                }
+                pop(){
+                    if (this.pointer>=0) {
+                        document.writeln(this.arr[this.pointer-1])
+                        this.arr[this.pointer-1] = undefined
+                        this.pointer--
+                    }
+                }
+            }
+            
+            test = new Stack()
+            
+            test.push(10)
+            test.push(20)
+            test.pop()
+            test.pop()
+        
         </script>
     </head>
     <body></body> 
