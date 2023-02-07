@@ -5,6 +5,79 @@
         <script type="text/javascript"> 
         /*
             Создать программную модель двусвязного списка, используя объектно-ориентированный подход */
+
+
+            // в с++ указатели
+            // в js объект в объекте
+
+            class list {
+                constructor() {
+                    this.head = null
+                    this.tail = null
+                    this.length = 0
+                }
+                push(data) {
+                    var node = {prev:null, data, next:null} // new node
+                    if (!this.head) { this.head = node; this.tail = node } else {
+                        node.prev = this.tail;
+                        this.tail.next = node;
+                        this.tail = this.tail.next;
+                    }
+                    this.length++
+                }
+                find(data) { // search index of first mention of data
+                    if (this.head!=null) {
+                        var node = this.head // visitor
+                        var ind = 0
+                        while (node!=this.tail && node.data!= data) {
+                            node = node.next
+                            ind++
+                        }
+                        if (node.data == data) { return ind }
+                        else { return -1 }
+                    }
+                    
+                }
+                pop(data) {
+                    const ind = this.find(data)
+                    //find node with data
+                    if (ind < this.length/2) {
+                        var node = this.head // visitor from front
+                        for (var i = 0; i!=ind; i++) {
+                            node = node.next
+                        }
+                    } 
+                    else {
+                        var node = this.tail // visitor from back
+                        for (var i = this.length-1; i!=ind; i--) {
+                            node = node.prev
+                        }
+                    }
+                    //
+                    node.prev.next = node.next
+                    node.next.prev = node.prev
+                }
+                show() {
+                    var output = []
+                    var node = this.head // visitor
+                    while (node != null) {
+                        output.push(node.data)
+                        node = node.next
+                    }
+                    document.writeln((output +"<br />"))
+                }
+            }
+
+
+            var test = new list
+            test.push(10)
+            test.push(11)
+            test.push(20)
+            test.show()
+            test.pop(11)
+            test.show()
+            
+
         </script>
     </head>
     <body> </body>
