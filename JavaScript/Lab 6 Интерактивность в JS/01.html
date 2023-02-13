@@ -1,12 +1,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <title></title>
-        <script type="text/javascript"> 
-        /*
-Для объектно-ориентированной программной модели стека разработать пользовательский графический интерфейс.
-*/
-        </script>
+        <title>Interactive stack</title>
     </head>
-    <body></body> 
+    <body>
+        <div id = "stackView"></div>
+        <script src="01.js"></script>
+        <form method="get">
+            <input type="text" placeholder="value" name="pushed" id="to_push">
+            <!-- "<button onclick="pushStack()"> Push </button>" isn't here 'cause reloads whole script -->
+        </form>
+        <button onclick="pushStack()"> Push </button>
+        <button onclick="popStack()">Pop</button>
+    </body> 
 </html>

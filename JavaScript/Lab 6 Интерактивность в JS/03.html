@@ -1,12 +1,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
      <head>
-        <title></title>
-        <script type="text/javascript"> 
-        /*
-Для объектно-ориентированной программной модели двусвязного списка разработать пользовательский графический интерфейс.
-*/
-        </script>
+        <title>Interactive list</title>
     </head>
-    <body> </body>
+    <body>
+        <div id = "listView"></div>
+        <script src="03.js"></script>
+        <form method="get">
+            <input type="text" name="inputValue" id="inputValue" placeholder="inputValue">
+        </form>
+        <button onclick="pushInList()">Push</button>
+        <button onclick="popInList()">Pop</button>
+        <button onclick="searchInList()">Search</button>
+    </body>
 </html>

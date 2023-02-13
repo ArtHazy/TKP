@@ -1,12 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"> 
     <head>
-        <title></title>
-        <script type="text/javascript"> 
-        /*
-Для объектно-ориентированной программной модели циклической очереди разработать пользовательский графический интерфейс.
-*/
-        </script>
+        <title>Interactive queue</title>
     </head> 
-    <body></body> 
+    <body>
+        <div id="queueView"></div>
+        <script src="02.js"></script>
+        <form method="get">
+            <input type="text" placeholder="value" name="to_push" id="to_push">
+        </form>
+        <button onclick="pushQueue()">Push</button>
+        <button onclick="popQueue()">Pop</button>
+    </body> 
 </html>
