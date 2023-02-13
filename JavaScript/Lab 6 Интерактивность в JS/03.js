@@ -58,8 +58,6 @@ class list {
 
 
 var test = new list
-test.push(10)
-test.push(11)
 document.getElementById("listView").innerHTML = test.get()
 
 function popInList() {
