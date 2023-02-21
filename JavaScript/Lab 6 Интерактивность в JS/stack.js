@@ -1,4 +1,3 @@
-
 class Stack {
     constructor (length = 5) {
         this.arr = Array(length)
@@ -20,11 +19,7 @@ class Stack {
     }
 }
 
-var canvas0 = document.getElementById("canvas0")
-var ctx = canvas0.getContext("2d")
 var test = new Stack()
-
-
 
 test.push(10)
 document.getElementById("stackView").innerHTML = test.arr
@@ -38,8 +33,6 @@ function pushStack() {
     test.push(data)
     document.getElementById("stackView").innerHTML = test.arr
 }
-
-
 
 
 
