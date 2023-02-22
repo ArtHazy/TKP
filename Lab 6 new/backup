@@ -1,0 +1,43 @@
+class Stack {
+    constructor (length = 5) {
+        this.arr = Array(length)
+        this.length = length
+        this.pointer = 0
+    }
+    push(value){
+        if (this.pointer<this.length)
+        {
+            this.arr[this.pointer] = value
+            this.pointer++
+        } 
+    }
+    pop(){
+        if (this.pointer>=0) {
+            this.arr[this.pointer-1] = undefined
+            this.pointer--
+        }
+    }
+}
+
+if (document.getElementById("stack1").value == undefined) {
+    alert("please, create new stack")
+    create()
+}
+
+function create() {
+    var stack = new Stack()
+    document.getElementById("stack1").value = stack
+}
+
+function pushs() {
+    var stack = document.getElementById("stack1").value
+    var value = document.getElementById("push").value
+    stack.push(value)
+    document.getElementById("stack1").value = stac
+}
+
+function pops() {
+    var stack = document.getElementById("stack1").value
+    stack.pop()
+    document.getElementById("stack1") = stack.arr
+}

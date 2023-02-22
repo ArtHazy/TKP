@@ -19,19 +19,20 @@ class Stack {
     }
 }
 
-var test = new Stack()
+var stack = new Stack()
 
-test.push(10)
-document.getElementById("stackView").innerHTML = test.arr
+document.getElementById("stackView").innerHTML = stack.arr
 
 function popStack() {
-    test.pop()
-    document.getElementById("stackView").innerHTML = test.arr
+    stack.pop()
+    document.getElementById("stackView").innerHTML = stack.arr
+    paper_main()
 }
 function pushStack() {
     let data = document.getElementById("to_push").value
-    test.push(data)
-    document.getElementById("stackView").innerHTML = test.arr
+    stack.push(data)
+    document.getElementById("stackView").innerHTML = stack.arr
+    paper_main()
 }
 
 

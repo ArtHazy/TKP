@@ -5,76 +5,55 @@
         <link rel="stylesheet" href="styles.css">
         <script src="stack.js"></script>
         <script src="paper-full.js"></script>
-        <script type="text/paperscript" canvas = "canvas0">
-            var start = new Point(100,100)
+        <script type="text/paperscript" canvas="canvas0">
+            new function paper_main() {
+                var start = new Point(100,100)
 
-            var canvas = document.getElementById('canvas0');
-            var width = canvas.width;
-            var height = canvas.height;
-
-            var stack_length = 5
-            var stack = [10, undefined, 10]
-
-            var cell_width = width/stack_length/5
-            var cell_height = height/2
-
-            var val = 10
-            var flag = false
-
-            /*var text = new PointText({
-                point: [50, 50],
-                content: val,
-                fontSize: 20
-            })*/
-            
-            
-
-            
-            var draw_cells = new function() {
+                var canvas = document.getElementById('canvas0');
+                var width = canvas.width;
+                var height = canvas.height;
+    
+                var stack_length = stack.length
+    
+    
+                var cell_width = width/stack_length/5
+                var cell_height = height/2
                 
-                for (var i=0;i<stack_length;i++) {
-                    if (stack[i]) {
-                        var cell = new Path.Rectangle({
-                            from: [cell_width*i, 0],
-                            to: [cell_width*(i+1), cell_height],
-                            strokeColor: 'black',
-                            strokeWidth: 3,
-                            radius: 10,
-                            fillColor: 'red'
-                        })
-                    } else {
-                        var cell = new Path.Rectangle({
-                            from: [cell_width*i, 0],
-                            to: [cell_width*(i+1), cell_height],
-                            strokeColor: 'black',
-                            strokeWidth: 3,
-                            radius: 10,
-                            fillColor: 'green'
-                        })
-                    }
+                new function draw_cells() {
                     
+                    for (var i=0;i<stack_length;i++) {
+                        if (stack[i]) {
+                            var cell = new Path.Rectangle({
+                                from: [cell_width*i, 0],
+                                to: [cell_width*(i+1), cell_height],
+                                strokeColor: 'black',
+                                strokeWidth: 3,
+                                radius: 10,
+                                fillColor: 'red'
+                            })
+                            var text = new PointText({
+                                point: [cell_width*i, 42],
+                                content: stack[i],
+                                fontSize: 20
+                            })
+                        } else {
+                            var cell = new Path.Rectangle({
+                                from: [cell_width*i, 0],
+                                to: [cell_width*(i+1), cell_height],
+                                strokeColor: 'black',
+                                strokeWidth: 3,
+                                radius: 10,
+                                fillColor: 'green'
+                            })
+                        }
+                        
+                    }
                 }
             }
             
-            // debug below
-            var text = new PointText({
-                point: [50, 50],
-                content: width,
-                fontSize: 20
-            })
-            var text = new PointText({
-                point: [150, 50],
-                content: height,
-                fontSize: 20
-            })
 
-            
-
-            
-
-            
-            
         </script>
+        
     </head>
     <body>
        <canvas id="canvas0"></canvas>
