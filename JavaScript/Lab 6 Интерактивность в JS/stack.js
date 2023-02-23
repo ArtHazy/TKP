@@ -19,21 +19,44 @@ class Stack {
     }
 }
 
-var stack = new Stack()
 
-document.getElementById("stackView").innerHTML = stack.arr
+var retrievedStack = JSON.parse(localStorage.getItem("stackKey"))
 
-function popStack() {
+if (retrievedStack == null) {
+    alert("please, create new stack")
+    createStack()
+}
+
+function createStack() {
+    var stack = new Stack()
+    saveStack(stack,"stackKey")
+}
+
+function deleteStack(stackKey = "stackKey") {
+    localStorage.removeItem(stackKey)
+}
+
+function pushs() {
+    var stack = retrieveStack("stackKey")
+
+    var value = document.getElementById("push").value
+    stack.push(value)
+    saveStack(stack,"stackKey")
+}
+
+function pops() {
+    var stack = retrieveStack("stackKey")
     stack.pop()
-    document.getElementById("stackView").innerHTML = stack.arr
-    paper_main()
-}
-function pushStack() {
-    let data = document.getElementById("to_push").value
-    stack.push(data)
-    document.getElementById("stackView").innerHTML = stack.arr
-    paper_main()
+    saveStack(stack,"stackKey")
 }
 
-
-
+function retrieveStack(stackKey) {
+    var retrievedStack = JSON.parse(localStorage.getItem(stackKey))
+    var stack = new Stack(retrievedStack.length)
+    stack.arr=retrievedStack.arr
+    stack.pointer=retrievedStack.pointer
+    return stack
+}
+function saveStack(stack,stackKey) {
+    localStorage.setItem(stackKey, JSON.stringify(stack) )
+}

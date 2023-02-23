@@ -1,77 +1,43 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>Interactive stack</title>
-        <link rel="stylesheet" href="styles.css">
-        <script src="stack.js"></script>
-        <script src="paper-full.js"></script>
-        <script type="text/paperscript" canvas = "canvas0">
-            var start = new Point(100,100)
+class Stack {
+    constructor (length = 5) {
+        this.arr = Array(length)
+        this.length = length
+        this.pointer = 0
+    }
+    push(value){
+        if (this.pointer<this.length)
+        {
+            this.arr[this.pointer] = value
+            this.pointer++
+        } 
+    }
+    pop(){
+        if (this.pointer>=0) {
+            this.arr[this.pointer-1] = undefined
+            this.pointer--
+        }
+    }
+}
 
-            var canvas = document.getElementById('canvas0');
-            var width = canvas.width;
-            var height = canvas.height;
+if (document.getElementById("stack1").value == undefined) {
+    alert("please, create new stack")
+    create()
+}
 
-            var stack_length = 5
-            var stack = [10, undefined, 10]
+function create() {
+    var stack = new Stack()
+    document.getElementById("stack1").value = stack
+}
 
-            var cell_width = width/stack_length/5
-            var cell_height = height/2
+function pushs() {
+    var stack = document.getElementById("stack1").value
+    var value = document.getElementById("push").value
+    stack.push(value)
+    document.getElementById("stack1").value = stac
+}
 
-            var val = 10
-            var flag = false
-
-            /*var text = new PointText({
-                point: [50, 50],
-                content: val,
-                fontSize: 20
-            })*/
-            
-            
-
-            
-            var draw_cells = new function() {
-                
-                for (var i=0;i<stack_length;i++) {
-                    if (stack[i]) {
-                        var cell = new Path.Rectangle({
-                            from: [cell_width*i, 0],
-                            to: [cell_width*(i+1), cell_height],
-                            strokeColor: 'black',
-                            strokeWidth: 3,
-                            radius: 10,
-                            fillColor: 'red'
-                        })
-                    } else {
-                        var cell = new Path.Rectangle({
-                            from: [cell_width*i, 0],
-                            to: [cell_width*(i+1), cell_height],
-                            strokeColor: 'black',
-                            strokeWidth: 3,
-                            radius: 10,
-                            fillColor: 'green'
-                        })
-                    }
-                    
-                }
-            }
-
-            
-
-            
-
-            
-            
-        </script>
-    </head>
-    <body>
-       <canvas id="canvas0"></canvas>
-        <div id = "stackView"></div>
-        <form method="get">
-            <input type="text" placeholder="value" name="pushed" id="to_push">
-            <!-- "<button onclick="pushStack()"> Push </button>" isn't here 'cause reloads whole script -->
-        </form>
-        <button onclick="pushStack()"> Push </button>
-        <button onclick="popStack()">Pop</button>
-    </body> 
-</html>
+function pops() {
+    var stack = document.getElementById("stack1").value
+    stack.pop()
+    document.getElementById("stack1") = stack.arr
+}

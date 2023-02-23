@@ -1,68 +1,76 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>Interactive stack</title>
-        <link rel="stylesheet" href="styles.css">
-        <script src="stack.js"></script>
-        <script src="paper-full.js"></script>
-        <script type="text/paperscript" canvas="canvas0">
-            new function paper_main() {
-                var start = new Point(100,100)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stack</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Paper import -->
+    <script src="paper-full.js"></script>
+    <!--  -->
+</head>
+<body>
+    <div id="stack1"></div>
+    <div class="stack">
+        <canvas id="canvas0"></canvas>
+        <form method="get">
+            <div class="center">
+            <input type="text" placeholder="data" id="push">
+            <button onclick="pushs()">Push</button> | <button onclick="pops()">Pop</button> | <button onclick="deleteStack()">Delete</button>
+            </div>
+        </form>
+    </div>
 
-                var canvas = document.getElementById('canvas0');
-                var width = canvas.width;
-                var height = canvas.height;
+    <!-- Scripts -->
+        <script src="stack.js"></script>
+        <!-- Paper use -->
+            <script type="text/paperscript" canvas="canvas0">
+                new function paper_main() {
+                    var start = new Point(100,100)
     
-                var stack_length = stack.length
-    
-    
-                var cell_width = width/stack_length/5
-                var cell_height = height/2
-                
-                new function draw_cells() {
+                    var canvas = document.getElementById('canvas0');
+                    var width = canvas.width;
+                    var height = canvas.height;
+                    var stack = retrieveStack("stackKey")
+        
+                    var cell_width = width/stack.length/5
+                    var cell_height = height/2
                     
-                    for (var i=0;i<stack_length;i++) {
-                        if (stack[i]) {
-                            var cell = new Path.Rectangle({
-                                from: [cell_width*i, 0],
-                                to: [cell_width*(i+1), cell_height],
-                                strokeColor: 'black',
-                                strokeWidth: 3,
-                                radius: 10,
-                                fillColor: 'red'
-                            })
-                            var text = new PointText({
-                                point: [cell_width*i, 42],
-                                content: stack[i],
-                                fontSize: 20
-                            })
-                        } else {
-                            var cell = new Path.Rectangle({
-                                from: [cell_width*i, 0],
-                                to: [cell_width*(i+1), cell_height],
-                                strokeColor: 'black',
-                                strokeWidth: 3,
-                                radius: 10,
-                                fillColor: 'green'
-                            })
+                    new function draw_cells() {
+                        for (var i=0;i<stack.length;i++) {
+                            if (stack.arr[i]!=null) {
+                                var cell = new Path.Rectangle({
+                                    from: [cell_width*i, 0],
+                                    to: [cell_width*(i+1), cell_height],
+                                    strokeColor: 'black',
+                                    strokeWidth: 3,
+                                    radius: 10,
+                                    fillColor: 'red'
+                                })
+                                var text = new PointText({
+                                    point: [cell_width*i, 42],
+                                    content: stack.arr[i],
+                                    fontSize: 20
+                                })
+                            } else {
+                                var cell = new Path.Rectangle({
+                                    from: [cell_width*i, 0],
+                                    to: [cell_width*(i+1), cell_height],
+                                    strokeColor: 'black',
+                                    strokeWidth: 3,
+                                    radius: 10,
+                                    fillColor: 'green'
+                                })
+                            }
                         }
-                        
                     }
                 }
-            }
-            
+            </script>
+        <!--  -->
+    <!--  -->
 
-        </script>
-        
-    </head>
-    <body>
-       <canvas id="canvas0"></canvas>
-        <div id = "stackView"></div>
-        <form method="get">
-            <input type="text" placeholder="value" name="pushed" id="to_push">
-            <!-- "<button onclick="pushStack()"> Push </button>" isn't here 'cause reloads whole script -->
-        </form>
-        <button onclick="pushStack()"> Push </button>
-        <button onclick="popStack()">Pop</button>
-    </body> 
+    
+</body>
 </html>
