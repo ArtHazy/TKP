@@ -19,16 +19,21 @@ class Stack {
     }
 }
 
+
 var retrievedStack = JSON.parse(localStorage.getItem("stackKey"))
 
 if (retrievedStack == null) {
     alert("please, create new stack")
-    create()
+    createStack()
 }
 
-function create() {
+function createStack() {
     var stack = new Stack()
     saveStack(stack,"stackKey")
+}
+
+function deleteStack(stackKey = "stackKey") {
+    localStorage.removeItem(stackKey)
 }
 
 function pushs() {

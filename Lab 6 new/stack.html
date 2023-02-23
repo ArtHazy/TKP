@@ -18,11 +18,9 @@
         <form method="get">
             <div class="center">
             <input type="text" placeholder="data" id="push">
-            <button onclick="pushs()">Push</button> | <button onclick="pops()">Pop</button>
+            <button onclick="pushs()">Push</button> | <button onclick="pops()">Pop</button> | <button onclick="deleteStack()">Delete</button>
             </div>
         </form>
-        
-        
     </div>
 
     <!-- Scripts -->
@@ -36,18 +34,13 @@
                     var width = canvas.width;
                     var height = canvas.height;
                     var stack = retrieveStack("stackKey")
-                    document.write(JSON.stringify(stack))
         
-                    var stack_length = stack.length
-        
-        
-                    var cell_width = width/stack_length/5
+                    var cell_width = width/stack.length/5
                     var cell_height = height/2
                     
                     new function draw_cells() {
-                        
-                        for (var i=0;i<stack_length;i++) {
-                            if (stack[i]) {
+                        for (var i=0;i<stack.length;i++) {
+                            if (stack.arr[i]!=null) {
                                 var cell = new Path.Rectangle({
                                     from: [cell_width*i, 0],
                                     to: [cell_width*(i+1), cell_height],
@@ -58,7 +51,7 @@
                                 })
                                 var text = new PointText({
                                     point: [cell_width*i, 42],
-                                    content: stack[i],
+                                    content: stack.arr[i],
                                     fontSize: 20
                                 })
                             } else {
@@ -71,7 +64,6 @@
                                     fillColor: 'green'
                                 })
                             }
-                            
                         }
                     }
                 }
