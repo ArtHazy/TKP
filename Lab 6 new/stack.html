@@ -8,11 +8,12 @@
     <link rel="stylesheet" href="styles.css">
     
     <!-- Paper import -->
-    <!-- <script src="paper-full.js"></script> -->
+    <script src="paper-full.js"></script>
     <!--  -->
 </head>
 <body>
-    <div class="stack" id="stack1">
+    <div id="stack1"></div>
+    <div class="stack">
         <canvas id="canvas0"></canvas>
         <form method="get">
             <div class="center">
@@ -27,9 +28,54 @@
     <!-- Scripts -->
         <script src="stack.js"></script>
         <!-- Paper use -->
-            <!-- <script type="text/paperscript" canvas="canvas0">
+            <script type="text/paperscript" canvas="canvas0">
+                new function paper_main() {
+                    var start = new Point(100,100)
+    
+                    var canvas = document.getElementById('canvas0');
+                    var width = canvas.width;
+                    var height = canvas.height;
+                    var stack = retrieveStack("stackKey")
+                    document.write(JSON.stringify(stack))
         
-             </script> -->
+                    var stack_length = stack.length
+        
+        
+                    var cell_width = width/stack_length/5
+                    var cell_height = height/2
+                    
+                    new function draw_cells() {
+                        
+                        for (var i=0;i<stack_length;i++) {
+                            if (stack[i]) {
+                                var cell = new Path.Rectangle({
+                                    from: [cell_width*i, 0],
+                                    to: [cell_width*(i+1), cell_height],
+                                    strokeColor: 'black',
+                                    strokeWidth: 3,
+                                    radius: 10,
+                                    fillColor: 'red'
+                                })
+                                var text = new PointText({
+                                    point: [cell_width*i, 42],
+                                    content: stack[i],
+                                    fontSize: 20
+                                })
+                            } else {
+                                var cell = new Path.Rectangle({
+                                    from: [cell_width*i, 0],
+                                    to: [cell_width*(i+1), cell_height],
+                                    strokeColor: 'black',
+                                    strokeWidth: 3,
+                                    radius: 10,
+                                    fillColor: 'green'
+                                })
+                            }
+                            
+                        }
+                    }
+                }
+            </script>
         <!--  -->
     <!--  -->
 

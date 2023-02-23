@@ -19,25 +19,39 @@ class Stack {
     }
 }
 
-if (document.getElementById("stack1").value == undefined) {
+var retrievedStack = JSON.parse(localStorage.getItem("stackKey"))
+
+if (retrievedStack == null) {
     alert("please, create new stack")
     create()
 }
 
 function create() {
     var stack = new Stack()
-    document.getElementById("stack1").value = stack
+    saveStack(stack,"stackKey")
 }
 
 function pushs() {
-    var stack = document.getElementById("stack1").value
+    var stack = retrieveStack("stackKey")
+
     var value = document.getElementById("push").value
     stack.push(value)
-    document.getElementById("stack1").value = stack
+    saveStack(stack,"stackKey")
 }
 
 function pops() {
-    var stack = document.getElementById("stack1").value
+    var stack = retrieveStack("stackKey")
     stack.pop()
-    document.getElementById("stack1") = stack.arr
+    saveStack(stack,"stackKey")
+}
+
+function retrieveStack(stackKey) {
+    var retrievedStack = JSON.parse(localStorage.getItem(stackKey))
+    var stack = new Stack(retrievedStack.length)
+    stack.arr=retrievedStack.arr
+    stack.pointer=retrievedStack.pointer
+    return stack
+}
+function saveStack(stack,stackKey) {
+    localStorage.setItem(stackKey, JSON.stringify(stack) )
 }
