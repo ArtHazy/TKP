@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stack</title>
+    <title>Queue</title>
     <link rel="stylesheet" href="styles.css">
     
     <!-- Paper import -->
@@ -12,34 +12,35 @@
     <!--  -->
 </head>
 <body>
-    <div id="stack1"></div>
-    <div class="stack">
+    <div class="queue">
         <canvas id="canvas0"></canvas>
         <form method="get">
             <div class="center">
             <input type="text" placeholder="data" id="push">
-            <button onclick="pushs()">Push</button> | <button onclick="pops()">Pop</button> | <button onclick="deleteStack()">Delete</button>
+            <button onclick="pushs()">Push</button> | <button onclick="pops()">Pop</button> | <button onclick="deleteQueue()">Delete</button>
             </div>
         </form>
     </div>
 
     <!-- Scripts -->
-        <script src="stack.js"></script>
+        <script src="queue.js"></script>
         <!-- Paper use -->
             <script type="text/paperscript" canvas="canvas0">
+                
                 new function paper_main() {
                     var canvas = document.getElementById('canvas0');
                     var width = canvas.width;
                     var height = canvas.height;
-                    var stack = retrieveStack("stackKey")
-        
-                    var cell_width = width/stack.length/2
-                    var cell_height = height/2
+                    var queue = retrieveQueue("queueKey")
                     
+                    
+                    var cell_width = width/queue.length/2
+                    var cell_height = height/2
+
                     new function draw_cells() {
                         var padding = 5
-                        for (var i=0;i<stack.length;i++) {
-                            if (stack.arr[i]!=null) {
+                        for (var i=0;i<queue.length;i++) {
+                            if (queue.arr[i]!=null) {
                                 var cell = new Path.Rectangle({
                                     from: [cell_width*i+padding, 0+padding],
                                     to: [cell_width*(i+1), cell_height-padding],
@@ -50,7 +51,7 @@
                                 })
                                 var text = new PointText({
                                     point: [cell_width*i+padding*2, height/3],
-                                    content: stack.arr[i],
+                                    content: queue.arr[i],
                                     fontSize: 15
                                 })
                             } else {
