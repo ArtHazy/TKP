@@ -6,16 +6,20 @@ class Queue {
         this.firstPtr = -1
     }
     push(value) {
-        if (this.spacePtr!=this.firstPtr) {
+        if (this.arr[this.spacePtr]==null) { // queue not full
             this.arr[this.spacePtr] = value
             this.spacePtr = ++this.spacePtr%this.length
+        } else { // queue is full
+            alert("Queue is full")
         }
         this.firstPtr==-1? this.firstPtr = 0 : null
     }
     pop() {
-        if (this.firstPtr!=this.spacePtr) {
-            this.arr[this.firstPtr] = undefined
+        if (this.arr[this.firstPtr]!=null) { // queue not empty
+            this.arr[this.firstPtr] = null
             this.firstPtr = ++this.firstPtr%this.length
+        } else { // queue is empty
+            alert("Queue is empty")
         }
     }
 }

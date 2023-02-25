@@ -9,13 +9,13 @@ class Stack {
         {
             this.arr[this.pointer] = value
             this.pointer++
-        } 
+        } else {alert("Stack is full")}
     }
     pop(){
-        if (this.pointer>=0) {
+        if (this.pointer>0) {
             this.arr[this.pointer-1] = undefined
             this.pointer--
-        }
+        } else {alert("Stack is empty")}
     }
 }
 
