@@ -5,11 +5,11 @@ class List {
         this.length = 0
     }
     push(data) {
-        var node = {prev:null, data, next:null} // new node
+        var node = {data, prev:null, next:null} // new node
         if (!this.head) { this.head = node; this.tail = node } else {
-            node.prev = this.tail;
-            this.tail.next = node;
-            this.tail = this.tail.next;
+            this.tail.next = node
+            node.prev = this.tail
+            this.tail = node
         }
         this.length++
     }
@@ -24,8 +24,9 @@ class List {
             if (node.data == data) { return ind }
             else { return -1 }
         }
-        
     }
+
+
     pop(data) {
         const ind = this.find(data)
         //find node with data
@@ -91,12 +92,22 @@ function retrieveList(listKey) {
     var retrievedList = JSON.parse(localStorage.getItem(listKey))
     var list = new List(retrievedList.length)
     
-    list.head=retrievedList.head
-    list.tail=retrievedList.tail
-    list.length=retrievedList.length
+    for (var i=0; i<retrievedList.length; i++){
+        list.push(retrievedList[i])
+    }
+
     return list
 }
 
 function saveList(list,listKey) {
-    localStorage.setItem(listKey, JSON.stringify(list) )
+    var output = new Array()
+    var buf = list.head
+    var i = 0
+    while (buf!=null){
+        output[i] = buf.data
+        buf = buf.next
+        i++
+    }
+
+    localStorage.setItem(listKey, JSON.stringify(output) )
 }
