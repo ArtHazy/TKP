@@ -27,9 +27,7 @@ class List {
     }
 
 
-    pop(data) {
-        const ind = this.find(data)
-        //find node with data
+    pop(ind) {
         if (ind < this.length/2) {
             var node = this.head // visitor from front
             for (var i = 0; i!=ind; i++) {
@@ -43,8 +41,21 @@ class List {
             }
         }
         //
-        node.prev.next = node.next
-        node.next.prev = node.prev
+        if (node.next && node.prev) {
+            node.prev.next = node.next
+            node.next.prev = node.prev
+        } else {
+            if (!node.next) {
+                node.prev.next = null
+                this.tail = node.prev
+            }
+            if (!node.prev) {
+                node.next.prev = null
+                this.head = node.next
+            }
+        }
+
+        
     }
     getAll() {
         var output = []
@@ -76,15 +87,31 @@ function deleteList(listKey = "listKey") {
 function pushs() {
     var list = retrieveList("listKey")
 
-    var value = document.getElementById("push").value
-    list.push(value)
+    var input = document.getElementById("input").value
+    list.push(input)
     saveList(list,"listKey")
 }
 
 function pops() {
     var list = retrieveList("listKey")
-    list.pop()
+    var input = document.getElementById("input").value
+    var index = list.find(input)
+
+    if (index!=-1){ // if innput data was found
+        list.pop(index)
+    } else {
+        alert("data was not found")
+    }
     saveList(list,"listKey")
+}
+
+function searchs() {
+    var list = retrieveList("listKey")
+    var input = document.getElementById("input").value
+    var result_ind = list.find(input)
+    if (result_ind==-1){ alert("data was not found")} else {
+        alert("data was found at index " + result_ind)
+    }
 }
 
 function retrieveList(listKey) {
